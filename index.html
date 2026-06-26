@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Site Monitoring</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="pinScreen" class="screen pin-screen">
+    <div class="card narrow">
+      <h1>Site Monitoring</h1>
+      <p class="muted">Enter site PIN</p>
+      <input id="pinInput" type="password" inputmode="numeric" placeholder="PIN" />
+      <button id="pinBtn">Enter</button>
+      <p id="pinError" class="error"></p>
+    </div>
+  </div>
+
+  <main id="app" class="hidden">
+    <header>
+      <h1>Site Monitoring</h1>
+      <button id="logoutBtn" class="secondary small">Lock</button>
+    </header>
+
+    <section id="home" class="screen">
+      <button class="big health" data-open="health">🦺 Health & Safety</button>
+      <button class="big clean" data-open="clean">🧹 Site Cleanliness</button>
+      <button class="big secondary" data-open="reports">📋 View Reports</button>
+    </section>
+
+    <section id="health" class="screen hidden">
+      <h2>Health & Safety</h2>
+      <form id="healthForm">
+        <label>Incident<textarea name="incident" required></textarea></label>
+        <label>Image<input name="image" type="file" accept="image/*" capture="environment"></label>
+        <label>Subcontractor<input name="subcontractor" required></label>
+        <label>Notice issued?<select name="notice" required><option value="">Select</option><option>Yes</option><option>No</option></select></label>
+        <label>Date<input name="date" type="date" required></label>
+        <label>Entry by<input name="entryBy" required></label>
+        <button type="submit">Save Entry</button>
+        <button type="button" class="secondary back">Back</button>
+      </form>
+    </section>
+
+    <section id="clean" class="screen hidden">
+      <h2>Site Cleanliness</h2>
+      <form id="cleanForm">
+        <label>Item<textarea name="item" required></textarea></label>
+        <label>Image<input name="image" type="file" accept="image/*" capture="environment"></label>
+        <label>Subcontractor<input name="subcontractor" required></label>
+        <label>Notice issued?<select name="notice" required><option value="">Select</option><option>Yes</option><option>No</option></select></label>
+        <label>Date<input name="date" type="date" required></label>
+        <label>Entry by<input name="entryBy" required></label>
+        <button type="submit">Save Entry</button>
+        <button type="button" class="secondary back">Back</button>
+      </form>
+    </section>
+
+    <section id="reports" class="screen hidden">
+      <h2>Reports</h2>
+      <div class="toolbar">
+        <button id="exportCsv" class="secondary">Export CSV</button>
+        <button id="clearData" class="danger">Clear Local Data</button>
+      </div>
+      <div id="reportList"></div>
+      <button class="secondary back">Back</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden">Saved</div>
+  <script src="app.js"></script>
+</body>
+</html>
